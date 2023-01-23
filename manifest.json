@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "version": "1.0",
+    "name": "RobloFetches",
+    "action": {
+        "default_title": "RobloFetcher"
+    },
+
+    "permissions": ["scripting", "notifications", "cookies"],
+    "host_permissions": [
+        "https://www.roblox.com/*"
+    ],
+
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
