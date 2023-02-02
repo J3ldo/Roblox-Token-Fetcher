@@ -17,6 +17,10 @@ function copyFullToken(){
 function getCookies(domain, name, callback) {
     chrome.cookies.get({"url": domain, "name": name}, function(cookie) {
         if(callback) {
+			if (cookie == null){
+				callback(null);
+				return;
+			}
             callback(cookie.value);
         }
     });
@@ -28,13 +32,13 @@ getCookies("https://www.roblox.com", ".ROBLOSECURITY", function(token) {
     document.getElementById("token").innerHTML = token;
 
     getCookies("https://www.roblox.com", "RBXSessionTracker", function(value) {
-    _fullToken += "RBXSessionTracker="+value+";";
+    if (value != null) _fullToken += "RBXSessionTracker="+value+";";
 
-    getCookies("https://www.roblox.com", "__RequestVerificationToken", function(value) {
-        _fullToken += "__RequestVerificationToken="+value+";";
+    getCookies("https://www.roblox.com", "GuestData", function(value) {
+        if (value != null) _fullToken += "GuestData="+value+";";
         
         getCookies("https://www.roblox.com", ".RBXIDCHECK", function(value) {
-            _fullToken += ".ROBLOSECURITY="+_token+".RBXIDCHECK="+value+";";
+            if (value != null) _fullToken += ".ROBLOSECURITY="+_token+".RBXIDCHECK="+value+";";
 
             document.getElementById("fullToken").innerHTML = _fullToken;
         });
